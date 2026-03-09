@@ -5,7 +5,7 @@ public class BST<E extends Comparable<E>> {
      * Creates a new Binary Search Tree object
      */
     public BST() {
-        root = new TreeNode (null, null, null)
+        root = new TreeNode (null, null, null);
     }
 
     /**
