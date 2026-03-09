@@ -20,14 +20,14 @@ public class BST<E extends Comparable<E>> {
                 temp.setValue(value);
                 cont = false;
             } else {
-                if(temp.getValue().compareTo(value) <= 0) {
+                if(temp.getValue().compareTo(value) >= 0) {
                     if (temp.getLeftChild() != null) {
                         temp = temp.getLeftChild();
                     } else {
                         temp.setLeftChild(new TreeNode(value, null, null));
                         cont = false;
                     }
-                } else{
+                } else {
                     if(temp.getRightChild() != null) {
                         temp = temp.getRightChild();
                     } else {
@@ -48,18 +48,21 @@ public class BST<E extends Comparable<E>> {
         TreeNode<E> temp = root;
         while(true) {
             if (temp.getValue() == null) {
+                System.out.print("null");
                 return false;
             } else {
                 if (temp.getValue().compareTo(value) == 0) {
                     return true;
-                } else if (temp.getValue().compareTo(value) < 0) {
-                    if (temp.getLeftChild() != null) {
+                } else if (temp.getValue().compareTo(value) > 0) {
+                    if (temp.getLeftChild() == null) {
+                        System.out.print("left child null");
                         return false;
                     } else {
                         temp = temp.getLeftChild();
                     }
                 } else {
-                    if (temp.getRightChild() != null) {
+                    if (temp.getRightChild() == null) {
+                        System.out.print("right child null");
                         return false;
                     } else {
                         temp = temp.getRightChild();

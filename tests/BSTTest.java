@@ -1,7 +1,6 @@
 import static org.junit.jupiter.api.Assertions.*;
 
 class BSTTest {
-
     @org.junit.jupiter.api.Test
     void add() {
         BST<Integer> tree = new BST<>();
@@ -10,7 +9,8 @@ class BSTTest {
         tree.add(1);
         tree.add(4);
         tree.add(5);
-        assertEquals(tree.contains(1), true);
+        tree.printInorder();
+        assertEquals(true, tree.contains(1));
     }
 
     @org.junit.jupiter.api.Test
