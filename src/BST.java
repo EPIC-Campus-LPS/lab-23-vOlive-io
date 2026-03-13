@@ -95,7 +95,7 @@ public class BST<E extends Comparable<E>> {
         else if(node.getRightChild() == null) {
             return 1 + countNodes(node.getLeftChild());
         }
-        return 1 + countNodes(node.getLeftChild()) + countNodes(node.getLeftChild());
+        return 1 + countNodes(node.getLeftChild()) + countNodes(node.getRightChild());
     }
 
     /**
@@ -121,7 +121,7 @@ public class BST<E extends Comparable<E>> {
         else if(node.getRightChild() == null) {
             return countLeafNodes(node.getLeftChild());
         }
-        return countLeafNodes(node.getLeftChild()) + countLeafNodes(node.getLeftChild());
+        return countLeafNodes(node.getLeftChild()) + countLeafNodes(node.getRightChild());
     }
 
     /**
@@ -221,6 +221,7 @@ public class BST<E extends Comparable<E>> {
      * @return The height of the tree
      */
     private int getHeight(TreeNode node, int h) {
+        System.out.print(node.getValue());
         if((node.getLeftChild() == null) && (node.getRightChild() == null)) {
             return h;
         }
@@ -230,7 +231,7 @@ public class BST<E extends Comparable<E>> {
         else if(node.getRightChild() == null) {
             return getHeight(node.getLeftChild(), h+1);
         }
-        return Math.max(getHeight(node.getLeftChild(), h+1), getHeight(node.getLeftChild(), h+1));
+        return Math.max(getHeight(node.getLeftChild(), h+1), getHeight(node.getRightChild(), h+1));
     }
 
     /**
@@ -247,11 +248,11 @@ public class BST<E extends Comparable<E>> {
                 if (temp.getLeftChild().getValue().compareTo(value) == 0) {
                     TreeNode<E> child = temp.getLeftChild();
                     temp.setLeftChild(null);
-                    return (E) child;
+                    return (E) child.getValue();
                 } else if (temp.getRightChild().getValue().compareTo(value) == 0) {
                     TreeNode<E> child = temp.getRightChild();
                     temp.setRightChild(null);
-                    return (E) child;
+                    return (E) child.getValue();
                 } else {
                     if (temp.getValue().compareTo(value) == -1) {
                         temp = temp.getLeftChild();
