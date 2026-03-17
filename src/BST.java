@@ -363,4 +363,39 @@ public class BST<E extends Comparable<E>> {
         return -1;
     }
 
+    /**
+     * Gets the largest value in the tree of the tree
+     * @return The largest value of the tree
+     */
+    public E findMax() {
+        TreeNode<E> temp = root;
+        while(true) {
+            if(temp.getValue() == null) {
+                return null;
+            }
+            if(temp.getRightChild() == null) {
+                return temp.getValue();
+            }
+            temp = temp.getRightChild();
+        }
+    }
+
+    /**
+     * Gets the smallest value in the tree of the tree
+     * @return The smallest value of the tree
+     */
+    public E findMin() {
+        TreeNode<E> temp = root;
+        while(true) {
+            if(temp.getValue() == null) {
+                return null;
+            }
+            if(temp.getLeftChild() == null) {
+                return temp.getValue();
+            }
+            temp = temp.getLeftChild();
+        }
+    }
+
+
 }

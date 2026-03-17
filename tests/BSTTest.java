@@ -81,7 +81,6 @@ class BSTTest {
         assertEquals(4, tree.getHeight());
     }
 
-
     @org.junit.jupiter.api.Test
     void delete() {
         BST<Integer> tree = new BST<>();
@@ -95,10 +94,40 @@ class BSTTest {
         tree.add(6);
         tree.add(10);
         tree.add(7);
-        tree.printPreorder();
-        System.out.println("");
-        tree.printPostorder();
         assertEquals(10, tree.delete(10));
         assertEquals(9, tree.countNodes());
     }
+
+    @org.junit.jupiter.api.Test
+    void findMin() {
+        BST<Integer> tree = new BST<>();
+        tree.add(5);
+        tree.add(2);
+        tree.add(9);
+        tree.add(4);
+        tree.add(3);
+        tree.add(1);
+        tree.add(8);
+        tree.add(6);
+        tree.add(10);
+        tree.add(7);
+        assertEquals(1, tree.findMin());
+    }
+
+    @org.junit.jupiter.api.Test
+    void findMax() {
+        BST<Integer> tree = new BST<>();
+        tree.add(5);
+        tree.add(2);
+        tree.add(9);
+        tree.add(4);
+        tree.add(3);
+        tree.add(1);
+        tree.add(8);
+        tree.add(6);
+        tree.add(10);
+        tree.add(7);
+        assertEquals(10, tree.findMax());
+    }
+
 }
