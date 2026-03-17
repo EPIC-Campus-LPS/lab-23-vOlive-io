@@ -95,6 +95,9 @@ class BSTTest {
         tree.add(6);
         tree.add(10);
         tree.add(7);
+        tree.printPreorder();
+        System.out.println("");
+        tree.printPostorder();
         assertEquals(10, tree.delete(10));
         assertEquals(9, tree.countNodes());
     }
