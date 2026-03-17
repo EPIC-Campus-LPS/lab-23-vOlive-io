@@ -1,3 +1,6 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class BSTTest {
@@ -130,4 +133,28 @@ class BSTTest {
         assertEquals(10, tree.findMax());
     }
 
+    @org.junit.jupiter.api.Test
+    void saveToFile() {
+        BST<Integer> tree = new BST<>();
+        tree.add(5);
+        tree.add(2);
+        tree.add(9);
+        tree.add(4);
+        tree.add(3);
+        tree.add(1);
+        tree.add(8);
+        tree.add(6);
+        tree.add(10);
+        tree.add(7);
+        tree.saveToFile("treeTest");
+        File f = new File("treeTest");
+        assertEquals(true, f.isFile());
+    }
+    @org.junit.jupiter.api.Test
+    void getFromFile() throws FileNotFoundException {
+        BST<Integer> tree = new BST<>();
+        File f = new File("treeTest");
+        tree.getFromFile(f);
+        assertEquals("5 2 1 4 3 9 8 6 7 10 ", tree.getPreorder(null, null));
+    }
 }

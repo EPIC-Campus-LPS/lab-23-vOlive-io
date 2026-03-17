@@ -1,3 +1,9 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
+
 public class BST<E extends Comparable<E>> {
     private TreeNode<E> root;
 
@@ -212,6 +218,25 @@ public class BST<E extends Comparable<E>> {
     }
 
     /**
+     * Recursively finds the Binary Search Tree Preorder
+     * @param node The node to search/gather out from, recursively
+     */
+    public String getPreorder(TreeNode node, String pre) {
+        if((node == null) && (pre == null)) {
+            node = root;
+            pre = "";
+        }
+        pre += "" + node.getValue() + " ";
+        if(node.getLeftChild() != null) {
+            pre = getPreorder(node.getLeftChild(), pre);
+        }
+        if(node.getRightChild() != null) {
+            pre = getPreorder(node.getRightChild(), pre);
+        }
+        return pre;
+    }
+
+    /**
      * Prints the Binary Search Tree Postorder
      */
     public void printPostorder() {
@@ -397,5 +422,36 @@ public class BST<E extends Comparable<E>> {
         }
     }
 
+    /**
+     * Saves the BST's preorder to a file, so it can be recreated
+     * @param fileName the name of the file to create/edit
+     * @return the file object
+     */
+    public File saveToFile(String fileName) {
+        File file = new File(fileName);
+        try {
+            FileWriter savedContent = new FileWriter(file);
+            String content = getPreorder(root, "");
+            savedContent.write(content);
+            savedContent.close();
+            return file;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
+    /**
+     * Creates a tree based off of the file provided
+     * @param f the file to provide
+     * @throws FileNotFoundException if the file is nto valid
+     */
+    public void getFromFile(File f) throws FileNotFoundException {
+        Scanner scan = new Scanner(f);
+        String contents = scan.nextLine();
+        String[] newTree = contents.split(" ");
+        root = new TreeNode(null, null, null);
+        for(String s : newTree) {
+            add((E) s);
+        }
+    }
 }
