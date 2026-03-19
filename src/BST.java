@@ -451,7 +451,8 @@ public class BST<E extends Comparable<E>> {
         String[] newTree = contents.split(" ");
         root = new TreeNode(null, null, null);
         for(String s : newTree) {
-            add((E) s);
+            Integer value = Integer.parseInt(s);
+            add((E) value);
         }
     }
 }

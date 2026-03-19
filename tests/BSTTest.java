@@ -78,9 +78,6 @@ class BSTTest {
         tree.add(6);
         tree.add(10);
         tree.add(7);
-        System.out.println("");
-        tree.printPreorder();
-        System.out.println("");
         assertEquals(4, tree.getHeight());
     }
 
@@ -150,6 +147,7 @@ class BSTTest {
         File f = new File("treeTest");
         assertEquals(true, f.isFile());
     }
+
     @org.junit.jupiter.api.Test
     void getFromFile() throws FileNotFoundException {
         BST<Integer> tree = new BST<>();
