@@ -265,34 +265,6 @@ public class BST<E extends Comparable<E>> {
     }
 
     /**
-     * Gets the height of the tree by finding the highest depth value
-     * @return The height of the tree
-     */
-    public int getHeight() {
-        return getHeight(root, 0);
-    }
-
-    /**
-     * Recursively finds the height of the tree
-     * @param node The node to traverse down from
-     * @param h The height of node
-     * @return The height of the tree
-     */
-    private int getHeight(TreeNode<E> node, int h) {
-        System.out.print(node.getValue());
-        if((node.getLeftChild() == null) && (node.getRightChild() == null)) {
-            return h;
-        }
-        else if(node.getLeftChild() == null) {
-            return getHeight(node.getRightChild(), h+1);
-        }
-        else if(node.getRightChild() == null) {
-            return getHeight(node.getLeftChild(), h+1);
-        }
-        return Math.max(getHeight(node.getLeftChild(), h+1), getHeight(node.getRightChild(), h+1));
-    }
-
-    /**
      * Deletes the specified node
      * * @param value the value of the node to remove
      * @return the removed node
@@ -454,5 +426,56 @@ public class BST<E extends Comparable<E>> {
             Integer value = Integer.parseInt(s);
             add((E) value);
         }
+    }
+
+    /**
+     * Gets the height of the tree by finding the highest depth value
+     * @return The height of the tree
+     */
+    public int getHeight() {
+        return getHeight(root);
+    }
+
+    /**
+     * Recursively finds the height of the tree
+     * @param node The node to traverse down from
+     * @return The height of the tree
+     */
+    private int getHeight(TreeNode<E> node) {
+        if(node == null) return 0;
+        return 1 + Math.max(getHeight(node.getLeftChild()), getHeight(node.getRightChild()));
+    }
+
+    /**
+     * Checks to see if the tree is balanced
+     * @return if the tree is balanced
+     */
+    public boolean isBalanced() {
+        return isBalanced(true, root);
+    }
+
+    /**
+     * The recursive carryout of isBalanced
+     * @param balance if the tree is balanced
+     * @param node node to check
+     * @return if the tree is balanced
+     */
+    private boolean isBalanced(boolean balance, TreeNode node) {
+        if((node == null) || (node.getValue() == null)) return balance;
+        balance = balance && (isBalanced(balance, node.getLeftChild()));
+        balance = balance && (isBalanced(balance, node.getRightChild()));
+        balance = balance && (getBalanceFactor(node));
+        return balance;
+    }
+
+    /**
+     * Check the balance factor of a node
+     * @param node the node to check
+     * @return the balance factor of the node
+     */
+    private boolean getBalanceFactor(TreeNode node) {
+        int ba = (getHeight(node.getLeftChild()) - getHeight(node.getRightChild()));
+        System.out.println(node.getValue() + " : " + ba + " : " + ((ba >= -1) && (ba <= 1)));
+        return ((ba >= -1) && (ba <= 1));
     }
 }
